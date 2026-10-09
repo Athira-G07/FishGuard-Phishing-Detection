@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Connect CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <title>PhishGuard | Phishing Website Detection</title>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+
+        <div class="logo">
+    <img src="{{ url_for('static', filename='phishguard-logo.jpg') }}" alt="PhishGuard Logo">
+</div>
+
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="#detection">Detection</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#model">Model</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="badge">
+            🛡️ AI-Powered Website Security
+        </div>
+
+        <h1>
+            Detect <span>Phishing Websites</span>
+            Before They Harm You
+        </h1>
+
+        <p>
+            Analyze a website URL using machine learning and determine
+            whether it is legitimate or potentially phishing.
+        </p>
+
+    </section>
+
+
+    <!-- Detection Section -->
+    <section id="detection">
+
+        <div class="detection-card">
+
+            <h2>🔍 Check a Website</h2>
+
+            <p class="subtitle">
+                Enter a website URL below to analyze its security.
+            </p>
+
+            <form action="/predict" method="POST">
+
+                <div class="url-box">
+
+                    <input
+    type="text"
+    name="url"
+    placeholder="https://example.com"
+    pattern="https?://.+"
+    title="Please enter a complete URL starting with http:// or https://"
+    required>
+
+                    <button type="submit" class="check-btn">
+                        🔍 Check Website
+                    </button>
+
+                </div>
+                <div class="example-urls">
+    <p>Try an example:</p>
+
+    <button type="button"
+            onclick="document.querySelector('input[name=url]').value='https://www.tolucafc.com'">
+        ✅ Legitimate Example
+    </button>
+
+    <button type="button"
+            onclick="document.querySelector('input[name=url]').value='https://mtbvverifylogin.web.app/'">
+        ⚠️ Phishing Example
+    </button>
+</div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Feature Cards -->
+    <section class="features">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">🤖</div>
+
+            <h3>Machine Learning</h3>
+
+            <p>
+                Uses a Random Forest machine learning model
+                trained on website-related features.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">⚡</div>
+
+            <h3>Fast Detection</h3>
+
+            <p>
+                Analyze a submitted website and provide
+                a detection result quickly.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">🔐</div>
+
+            <h3>Security Focused</h3>
+
+            <p>
+                Helps users identify potentially dangerous
+                phishing websites before visiting them.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- How It Works -->
+    <section class="how-section" id="how-it-works">
+
+        <h2>How It Works</h2>
+
+        <div class="steps">
+
+            <div class="step">
+
+                <div class="step-number">1</div>
+
+                <h3>Enter URL</h3>
+
+                <p>
+                    Enter the website address you want to check.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">2</div>
+
+                <h3>Extract Features</h3>
+
+                <p>
+                    Website characteristics are extracted
+                    from the submitted URL.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">3</div>
+
+                <h3>Random Forest</h3>
+
+                <p>
+                    The trained machine learning model
+                    analyzes the extracted features.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">4</div>
+
+                <h3>Get Result</h3>
+
+                <p>
+                    The system displays whether the website
+                    is legitimate or phishing.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+    <section class="model-section" id="model">
+
+    <h2>🤖 Model Information</h2>
+
+    <p class="model-subtitle">
+        Technical details of the machine learning model used by PhishGuard.
+    </p>
+
+    <div class="model-cards">
+
+        <div class="model-card">
+            <div class="model-icon">🌲</div>
+            <h3>Algorithm</h3>
+            <p>Random Forest Classifier</p>
+        </div>
+
+        <div class="model-card">
+            <div class="model-icon">🔢</div>
+            <h3>Input Features</h3>
+            <p>9 URL-based Features</p>
+        </div>
+
+        <div class="model-card">
+            <div class="model-icon">📊</div>
+            <h3>Training Samples</h3>
+            <p>26,260</p>
+        </div>
+
+        <div class="model-card">
+            <div class="model-icon">🧪</div>
+            <h3>Test Samples</h3>
+            <p>6,565</p>
+        </div>
+
+        <div class="model-card">
+            <div class="model-icon">🎯</div>
+            <h3>Test Accuracy</h3>
+            <p>99.54%</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+    <!-- About Section -->
+    <section class="how-section" id="about">
+
+        <h2>About This Project</h2>
+
+        <p style="max-width: 750px; margin: auto; line-height: 1.7; color: #667085;">
+
+            This project is a machine-learning-based phishing website
+            detection system developed using Python, Flask and
+            Random Forest classification. The system analyzes
+            website-related features to identify potentially
+            malicious websites.
+
+        </p>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <section class="disclaimer-section">
+    <div class="disclaimer-box">
+        <h3>⚠️ Important Notice</h3>
+        <p>
+            PhishGuard is a machine-learning-based detection tool intended
+            for educational and informational purposes. A prediction does
+            not guarantee that a website is safe or malicious. Always use
+            caution when visiting unfamiliar websites and avoid sharing
+            sensitive information.
+        </p>
+    </div>
+</section>
+
+        <p>
+            © 2026 PhishGuard | Phishing Website Detection System
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

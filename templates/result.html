@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <title>PhishGuard | Analysis Result</title>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">🛡️ PhishGuard</div>
+
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/#detection">Detection</a></li>
+            <li><a href="/#how-it-works">How It Works</a></li>
+            <li><a href="/#about">About</a></li>
+        </ul>
+    </nav>
+
+    <section class="result-section">
+
+        <div class="result-card">
+
+            {% if result == "Legitimate Website" %}
+
+                <div class="result-icon">✅</div>
+
+                <h1 class="legitimate">
+                    Legitimate Website
+                </h1>
+
+                <p class="result-message">
+                    Our machine learning model classified this website
+                    as legitimate based on the analyzed URL features.
+                </p>
+
+            {% else %}
+
+                <div class="result-icon">⚠️</div>
+
+                <h1 class="phishing">
+                    Phishing Website
+                </h1>
+
+                <p class="result-message">
+    ⚠️ This website shows characteristics associated with phishing.
+    Avoid entering passwords, banking details, or other sensitive information.
+</p>
+
+            {% endif %}
+
+            <div class="url-result">
+                <strong>Analyzed URL</strong>
+                <p>{{ url }}</p>
+            </div>
+            <div class="feature-info">
+    <h3>🔎 Analysis Details</h3>
+
+    <div class="feature-grid">
+        <div><strong>URL Length</strong><span>{{ features["URLLength"] }}</span></div>
+        <div><strong>Domain Length</strong><span>{{ features["DomainLength"] }}</span></div>
+        <div><strong>HTTPS</strong><span>{{ "Yes" if features["IsHTTPS"] == 1 else "No" }}</span></div>
+        <div><strong>Subdomains</strong><span>{{ features["NoOfSubDomain"] }}</span></div>
+        <div><strong>Digits in URL</strong><span>{{ features["NoOfDegitsInURL"] }}</span></div>
+        <div><strong>Query Marks</strong><span>{{ features["NoOfQMarkInURL"] }}</span></div>
+        <div><strong>Equals Signs</strong><span>{{ features["NoOfEqualsInURL"] }}</span></div>
+        <div><strong>Ampersands</strong><span>{{ features["NoOfAmpersandInURL"] }}</span></div>
+    </div>
+</div>
+
+            <a href="/" class="check-again">
+                🔍 Check Another Website
+            </a>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <p>© 2026 PhishGuard | Phishing Website Detection System</p>
+    </footer>
+
+</body>
+
+</html>
